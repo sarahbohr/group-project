@@ -35,33 +35,7 @@ class MapContainer extends Component {
       })
     }
   }
-
-
-//   render() {
-//     const styles = {
-//       width: '100%',
-//       height: '100%',
-//     };
-//     let breweriesView = <div className="col-md-7">Loading...</div>
-//     const { breweries } = this.state;
-//     const { google } = this.props;
-//     if (breweries && breweries.length > 0) {
-//       breweriesView = breweries.map(brewery => {
-//         return (
-//           <Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
-//             <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseInt(brewery.latitude), lng: parseInt(brewery.longitude) }} />
-//             <Marker />
-//           </Map>
-//         );
-//       });
-//     }
-//     return (
-//       <div>
-//         {breweriesView}
-//       </div>
-//     );
-//   }
-// }
+  
 render() {
   const { breweries } = this.state
   const { google } = this.props;
