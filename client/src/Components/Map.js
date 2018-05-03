@@ -10,11 +10,13 @@ class MapContainer extends Component {
   }
 
   componentDidMount() {
-    const API_URI = `http://api.brewerydb.com/v2/locations?postalCode=80202&key=9a2879d7dc656e41e2f7515f290879c9`;
+    const API_URL = `http://localhost:3000/api/v1/breweries`;
 
-    fetch(API_URI)
+    fetch(API_URL)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => this.setState({
+        breweries: data
+      }))
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -34,37 +36,48 @@ class MapContainer extends Component {
     }
   }
 
-  onInfoWindowClose() {
 
+//   render() {
+//     const styles = {
+//       width: '100%',
+//       height: '100%',
+//     };
+//     let breweriesView = <div className="col-md-7">Loading...</div>
+//     const { breweries } = this.state;
+//     const { google } = this.props;
+//     if (breweries && breweries.length > 0) {
+//       breweriesView = breweries.map(brewery => {
+//         return (
+//           <Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
+//             <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseInt(brewery.latitude), lng: parseInt(brewery.longitude) }} />
+//             <Marker />
+//           </Map>
+//         );
+//       });
+//     }
+//     return (
+//       <div>
+//         {breweriesView}
+//       </div>
+//     );
+//   }
+// }
+render() {
+  const { breweries } = this.state
+  const { google } = this.props;
+  const styles = {
+    width: '100%',
+    height: '100%',
   }
 
-
-  render() {
-    const styles = {
-      width: '100%',
-      height: '100%',
-    };
-    return (
-      <Map 
-        google={this.props.google} 
-        style={styles}
-        zoom={14}
-        initialCenter={{
-          lat: 39.75761,
-          lng: -105.007
-        }}
-        onClick={this.onMapClick}
-        >
-        <Marker onClick={this.onMarkerClick} 
-                name={'Current Location'} />
-        <InfoWindow onClose={this.onInfoWindowClose} >
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
-      </Map>
-    );
-  }
+  if (!breweries || breweries.length === 0) return <div className="col-md-7">Loading...</div>
+  
+  return (<Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
+    {breweries.map(brewery => 
+      <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }} />)
+    }
+  </Map>)
+}
 }
 
 export default GoogleApiWrapper({

@@ -2,28 +2,29 @@ const express     = require('express')
 const bodyParser  = require('body-parser')
 const morgan      = require('morgan')
 const cors        = require('cors')
-//const cors-anywhere   = require('cors-anywhere')
+// const cors-anywhere   = require('cors-anywhere')
 const app         = module.exports = express()
 const port        = parseInt(process.env.PORT || 3000)
 const knex        = require('./connection.js')
 
-//const data = {id:1, name:"brewery"}
+// const data = {id:1, name:"brewery"}
 
-app.get('/api/v1/breweries', (request, response) => {
-  knex("breweries").then(breweries => {response.json(breweries)} )
-})
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'))
-app.use(cors({origin: true}))
+app.use(cors({origin: true, credentials: true }))
+
+app.get('/api/v1/breweries', (request, response) => {
+  knex("breweries").then(breweries => {response.json(breweries)} )
+})
 
 app.use(notFound)
 app.use(errorHandler)
 
 
 
-console.log("this is working")
+// console.log("this is working")
 
 
 
