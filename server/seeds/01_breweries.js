@@ -1,12 +1,11 @@
 
-exports.seed = function(knex, Promise) {
+exports.seed = async (knex, Promise) => {
   // Deletes ALL existing entries
-  return knex('breweries').del()
-    .then(function () {
+  await knex('breweries').del()
+    async () => {
       // Inserts seed entries
-      return knex('breweries').insert([
+      await knex('breweries').insert([
         {id: 1, brewery: 'Molson-Coors', latitude: 123, longitude: 456}
-
       ]);
-    });
+    }
 };

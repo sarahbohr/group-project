@@ -1,12 +1,11 @@
 
-exports.seed = function(knex, Promise) {
+exports.seed = async(knex, Promise) => {
   // Deletes ALL existing entries
-  return knex('user_address').del()
-    .then(function () {
+  await knex('user_address').del()
+    async () => {
       // Inserts seed entries
-      return knex('user_address').insert([
+      await knex('user_address').insert([
         {id: 1, address: 'HELL'},
-
       ]);
-    });
+    }
 };

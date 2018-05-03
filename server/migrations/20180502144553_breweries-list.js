@@ -1,12 +1,12 @@
-exports.up = function(knex, Promise) {
+exports.up = (knex, Promise) => {
   return knex.schema.createTable('breweries', (table) => {
     table.increments()
     table.text('brewery')
-    table.number('latitude')
-    table.number('longitude')
+    table.decimal('latitude')
+    table.decimal('longitude')
   })
 };
 
-exports.down = function(knex, Promise) {
+exports.down = (knex, Promise) => {
   return knex.schema.dropTableIfExists('breweries')
 };
