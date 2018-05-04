@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class MapContainer extends Component {
@@ -48,7 +48,16 @@ render() {
   
   return (<Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
     {breweries.map(brewery => 
-       <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }} />)
+    <Fragment key={brewery.id}>
+       <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude),  }} />
+       <InfoWindow 
+        marker={this.state.activeMarker}
+        visible={this.state.showingInfoWindow}
+        options={{pixelOffset: new google.maps.Size(0,-30)}}>
+        <h1>{brewery.name}</h1>
+      </InfoWindow>
+      </Fragment>
+      )
     }
   </Map>)
 }
