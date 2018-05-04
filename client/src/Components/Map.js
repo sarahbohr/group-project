@@ -10,7 +10,7 @@ class MapContainer extends Component {
   }
 
   componentDidMount() {
-    const API_URL = `http://localhost:3000/api/v1/breweries`;
+    const API_URL = `https://hidden-tor-78736.herokuapp.com/api/v1/breweries`;
 
     fetch(API_URL)
       .then(res => res.json())
@@ -35,7 +35,7 @@ class MapContainer extends Component {
       })
     }
   }
-  
+
 render() {
   const { breweries } = this.state
   const { google } = this.props;
@@ -48,7 +48,7 @@ render() {
   
   return (<Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
     {breweries.map(brewery => 
-      <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }} />)
+       <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }} />)
     }
   </Map>)
 }

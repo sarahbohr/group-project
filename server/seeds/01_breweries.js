@@ -8,62 +8,62 @@ exports.seed = function(knex, Promise) {
         {
           id: 1,
           brewery: 'Denver Chophouse & Brewery',
-          latitude: 39.75,
-          longitude: -104.87
+          latitude: 39.757421,
+          longitude: -105.01
         },
         {
           id: 2,
           brewery: 'Denver Downtown',
-          latitude: 39.74,
-          longitude: -105.76
+          latitude: 39.754432,
+          longitude: -105.02
         },
         {
           id: 3,
           brewery: 'Main Brewery',
-          latitude: 39.75,
-          longitude: -104.75
+          latitude: 39.756933,
+          longitude: -105.03
         },
         {
           id: 4,
           brewery: 'Denver Beer Company',
-          latitude: 39.75,
-          longitude: -105.00
+          latitude: 39.756549,
+          longitude: -105.04
         },
         {
           id: 5,
           brewery: 'Jagged Mountain Brewery',
-          latitude: 39.75,
-          longitude: -104.99
+          latitude: 39.754789,
+          longitude: -105.05
         },
         {
           id: 6,
           brewery: 'Wynkoop Brewery',
-          latitude: 39.756543,
-          longitude: -104.545435
+          latitude: 39.753245,
+          longitude: -105.06
         },
         {
           id: 7,
           brewery: 'Dixons Downtown Brewery',
-          latitude: 34.546575,
-          longitude: -103.347685
+          latitude: 39.756521,
+          longitude: -105.07
         },
         {
           id: 8,
           brewery: 'Rock Bottom Brewery',
-          latitude: 32.543243,
-          longitude: -105.324646
+          latitude: 39.757453,
+          longitude: -105.08
         },
         {
           id: 9,
           brewery: 'The Doctors Inn',
-          latitude: 33.540091,
-          longitude: -105.652122
+          latitude: 39.752451,
+          longitude: -105.09
         },
         {
           id: 10,
           brewery: 'The Broken Morty',
-          latitude: 34.541112,
-          longitude: -105.432221
+          latitude: 39.751155,
+          longitude: -105.10
         }
       ]);
     });
