@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import './Map.css'
 
 class MapContainer extends Component {
   state = {
@@ -10,7 +11,7 @@ class MapContainer extends Component {
   }
 
   componentDidMount() {
-    const API_URL = `https://hidden-tor-78736.herokuapp.com/api/v1/breweries`;
+    const API_URL = `https://hidden-tor-78736.herokuapp.com/api/v1/breweries`
 
     fetch(API_URL)
       .then(res => res.json())
@@ -27,18 +28,16 @@ class MapContainer extends Component {
     })
   }
 
-  onMapClick(props) {
-    if(this.state.showingInfoWindow) {
+  onMapClick = props => {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null
       })
-    }
   }
 
 render() {
   const { breweries } = this.state
-  const { google } = this.props;
+  const { google } = this.props
   const styles = {
     width: '100%',
     height: '100%',
@@ -46,14 +45,41 @@ render() {
 
   if (!breweries || breweries.length === 0) return <div className="col-md-7">Loading...</div>
   
-  return (<Map google={google} style={styles} zoom={14} initialCenter={{ lat: 39.75761, lng: -105.007 }} onClick={this.onMapClick}>
-    {breweries.map(brewery => 
-       <Marker onClick={this.onMarkerClick} name={brewery.name} position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }} />)
-    }
-  </Map>)
+  return (
+    <Map 
+      google={google} 
+      style={styles} 
+      zoom={14} 
+      initialCenter={{ lat: 39.75761, lng: -105.007 }} 
+      onClick={this.onMapClick}>
+    { breweries.map(brewery => {
+      let mapMarker =
+        <Marker 
+          onClick={this.onMarkerClick}
+          key={brewery.id}
+          position={{ lat: parseFloat(brewery.latitude), lng: parseFloat(brewery.longitude) }}>
+        </Marker>
+      let mapWindow = 
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          position={brewery.LatLng}>
+            <div>
+              <h1>{brewery.brewery}</h1>
+              
+              <p>4956 Main St.<br />
+              Denver, CO 80206</p>
+            </div>
+        </InfoWindow>
+        console.log(':', )
+      return [mapMarker, mapWindow]
+    })}
+    </Map>)
 }
 }
 
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBlOPEORfb4pCiguaMhJYdG6GWm42WJ6zM'
 })(MapContainer);
+
+
