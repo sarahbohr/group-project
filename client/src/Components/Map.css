@@ -5,16 +5,28 @@
 }
 
 h1 {
-  font-size: 2vw;
+  font-size: 2em;
   font-weight: 400;
 }
 
 p {
-  font-size: 1.3vw;
+  font-size: 1.2em;
   font-weight: 100;
 }
 
 img {
   float: right;
-  width: 5vw;
+  width: 10em;
+  margin: 0 0 0 10px;
+}
+
+a {
+  color: orangered;
+  text-decoration: none;
+  padding-top: 5px;
+}
+
+a:hover {
+  color: orange;
+  text-decoration: none;
 }

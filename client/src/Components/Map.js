@@ -66,9 +66,12 @@ render() {
           position={brewery.LatLng}>
             <div>
               <h1>{brewery.brewery}</h1>
-              
+              <img src="https://raw.githubusercontent.com/sarahbohr/group-project/SB-infowindows/client/src/Components/dbc.jpg" alt="test" />
               <p>4956 Main St.<br />
-              Denver, CO 80206</p>
+              Denver, CO 80206<br />
+              303.455.1254<br />
+              <a href="/">Website</a><br />
+              <a href="/">Get directions</a></p>
             </div>
         </InfoWindow>
         console.log(':', )
